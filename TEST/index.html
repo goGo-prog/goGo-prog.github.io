@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Manajemen Hotel HAWAI IN </title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin: 20px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 10px;
+      width: 280px;
+      flex-grow: 1;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #003366;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #003366;
+      color: white;
+    }
+
+    form input, form button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background-color: #003366;
+  color: white;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #005599;
+}
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Dashboard Manajemen Hotel HAWAI IN</h1>
+</header>
+
+<div class="container">
+  <div class="card">
+    <h3>Total Kamar</h3>
+    <p>120</p>
+  </div>
+
+  <div class="card">
+    <h3>Kamar Terisi</h3>
+    <p>85</p>
+  </div>
+
+  <div class="card">
+    <h3>Tamu Saat Ini</h3>
+    <p>150</p>
+  </div>
+
+  <div class="card">
+    <h3>Pemesanan Hari Ini</h3>
+    <p>27</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card" style="width: 100%;">
+    <h3>Daftar Pemesanan Terbaru</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nama Tamu</th>
+          <th>Tanggal Check-In</th>
+          <th>Tanggal Check-Out</th>
+          <th>Kamar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Budi Santoso</td>
+          <td>2025-04-18</td>
+          <td>2025-04-20</td>
+          <td>Deluxe 101</td>
+        </tr>
+        <tr>
+          <td>Siti Aminah</td>
+          <td>2025-04-19</td>
+          <td>2025-04-21</td>
+          <td>Suite 203</td>
+        </tr>
+        <tr>
+          <td>Andi Wijaya</td>
+          <td>2025-04-19</td>
+          <td>2025-04-22</td>
+          <td>Standard 305</td>
+        </tr>
+      </tbody>
+    </table>
+ 
+<div class="container">
+    <div class="card" style="width: 100%;">
+      <h3>Form Input Data Tamu</h3>
+      <form id="formTamu">
+        <label for="nama">Nama Tamu:</label><br>
+        <input type="text" id="nama" name="nama" required><br><br>
+  
+        <label for="checkin">Tanggal Check-In:</label><br>
+        <input type="date" id="checkin" name="checkin" required><br><br>
+  
+        <label for="checkout">Tanggal Check-Out:</label><br>
+        <input type="date" id="checkout" name="checkout" required><br><br>
+  
+        <label for="kamar">Nomor Kamar:</label><br>
+        <input type="text" id="kamar" name="kamar" required><br><br>
+  
+        <button type="submit">Simpan</button>
+      </form>
+      <p id="pesanSimpan" style="color: green; display: none;">Data berhasil disimpan (simulasi)!</p>
+    </div>
+  </div>
+  
+  </div>
+</div>
+<script>
+    document.getElementById('formTamu').addEventListener('submit', function(e) {
+      e.preventDefault(); // Mencegah reload
+      document.getElementById('pesanSimpan').style.display = 'block';
+      this.reset(); // Reset form
+    });
+  </script>
+  
+</body>
+</html>

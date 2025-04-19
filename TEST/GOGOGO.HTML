@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Hacker Ganteng</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Courier New', Courier, monospace;
+      color: #00ff00;
+      background: black;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      top: 30%;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      animation: flicker 2s infinite;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 10px 25px;
+      margin: 10px;
+      border: 2px solid #00ff00;
+      background-color: transparent;
+      color: #00ff00;
+      border-radius: 5px;
+      cursor: pointer;
+      position: absolute;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #00ff00;
+      color: black;
+    }
+
+    .ya {
+      left: 40%;
+      top: 60%;
+    }
+
+    .tidak {
+      top: 60%;
+    }
+
+    #gambarContainer {
+      display: none;
+      text-align: center;
+      position: fixed;
+      top: 20%;
+      width: 100%;
+      z-index: 10;
+      animation: fadeZoom 2s ease-in-out;
+    }
+
+    #gambarContainer img {
+      width: 300px;
+      border: 3px solid #00ff00;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ff00;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes fadeZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    #loading {
+      display: none;
+      position: fixed;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 22px;
+      color: #00ff00;
+      animation: flicker 1s infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="matrixCanvas"></canvas>
+
+  <div class="container" id="mainContent">
+    <h1>APAKAH SAYA GANTENG ATAU TIDAK?</h1>
+    <br>
+    <br>
+    <br>
+
+    <button class="ya" onclick="jawabYa()">YA!</button>
+    <button class="tidak" id="tidakBtn" onmouseover="kabur()">TIDAK!</button>
+  </div>
+
+  <div id="loading">Memproses jawaban...</div>
+
+  <div id="gambarContainer">
+    <img src="GO.jpg" alt="Gambar Ganteng">
+    <h2>G O G O</h2>
+  </div>
+
+  <script>
+    function jawabYa() {
+      document.getElementById('mainContent').style.display = 'none';
+      document.getElementById('loading').style.display = 'block';
+
+      setTimeout(() => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('gambarContainer').style.display = 'block';
+      }, 2000); // waktu delay 2 detik untuk efek "memproses"
+    }
+
+    function kabur() {
+      const button = document.getElementById('tidakBtn');
+      const maxX = window.innerWidth - button.offsetWidth;
+      const maxY = window.innerHeight - button.offsetHeight;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      button.style.left = randomX + "px";
+      button.style.top = randomY + "px";
+    }
+
+    window.onload = () => {
+      kabur();
+    };
+
+    // MATRIX BACKGROUND
+    const canvas = document.getElementById("matrixCanvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    let letters = "01";
+    letters = letters.split("");
+
+    let fontSize = 14;
+    let columns = canvas.width / fontSize;
+
+    let drops = [];
+    for (let x = 0; x < columns; x++)
+      drops[x] = 1;
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#0F0";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        let text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+          drops[i] = 0;
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 33);
+  </script>
+
+</body>
+</html>

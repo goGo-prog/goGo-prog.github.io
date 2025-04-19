@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Animasi GOGO</title>
+  <style>
+    body {
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .gogo {
+      font-size: 80px;
+      font-weight: bold;
+      color: #fff;
+      animation: glow 2s infinite alternate ease-in-out,
+                 moveUpDown 3s infinite ease-in-out;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 10px #ff00cc, 0 0 20px #ff00cc, 0 0 30px #ff00cc;
+        color: #ffffff;
+      }
+      100% {
+        text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff;
+        color: #00ffff;
+      }
+    }
+
+    @keyframes moveUpDown {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gogo" id="gogoText">GOGO</div>
+
+  <script>
+    // Efek tambahan dengan JavaScript: ubah warna secara acak saat diklik
+    const gogo = document.getElementById('gogoText');
+    const colors = ['#ff0066', '#00ffcc', '#ffcc00', '#33cc33', '#3399ff'];
+
+    gogo.addEventListener('click', () => {
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      gogo.style.color = randomColor;
+    });
+  </script>
+
+</body>
+</html>
